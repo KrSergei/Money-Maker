@@ -203,11 +203,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 8.83
+  near clip plane: 5.25
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -234,7 +234,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 835803462}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &709169663
@@ -334,6 +334,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 709169663}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &835803462 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7763783734082410632, guid: 8526b8b2665400f45a73eef502c8a27f, type: 3}
+  m_PrefabInstance: {fileID: 4299044011123062028}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1025091452
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +368,7 @@ Transform:
   m_Children:
   - {fileID: 391612901}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1824282913
 GameObject:
