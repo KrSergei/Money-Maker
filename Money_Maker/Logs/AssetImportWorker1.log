@@ -10501,6 +10501,7 @@ Received Import Request.
 Start importing Assets/Prefabs/Player.prefab using Guid(8526b8b2665400f45a73eef502c8a27f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4ac8d99105b5072a3b27804aa7ca94b9') in 0.029658 seconds
   Import took 0.034534 seconds .
 
+<<<<<<< HEAD
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
@@ -10541,3 +10542,5 @@ System memory in use after: 97.0 MB.
 Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 2310.
 Total: 2.862502 ms (FindLiveObjects: 0.354274 ms CreateObjectMapping: 0.199611 ms MarkObjects: 2.161033 ms  DeleteObjects: 0.146169 ms)
 
+=======
+>>>>>>> main
