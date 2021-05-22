@@ -4,28 +4,28 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 7112947103504982134
-    second: Idle
+    second: Body
   - first:
       213: 4745416084331629978
-    second: walk
+    second: Player_Enemy_1
   - first:
       213: 1188907638935476457
-    second: walk_2
+    second: Player_Enemy_2
   - first:
       213: 5757621611960166162
-    second: walk_3
+    second: Player_Enemy_3
   - first:
       213: -7770256803222581749
-    second: walk_4
+    second: Player_Enemy_4
   - first:
       213: 756038286142224641
-    second: walk_5
+    second: Player_Enemy_5
   - first:
       213: -250323849170096591
-    second: walk_6
+    second: Player_Enemy_6
   - first:
       213: -8183982475261270068
-    second: walk_7
+    second: Player_Enemy_7
   - first:
       213: 4518767935200119821
     second: Player_Enemy_8
@@ -40,28 +40,28 @@ TextureImporter:
     second: Player_Enemy_11
   - first:
       213: -1648428662602547930
-    second: Enemy_Idle
+    second: Player_Enemy_12
   - first:
       213: 3371360904460032069
-    second: Enemy_walk1
+    second: Player_Enemy_13
   - first:
       213: -2331875055521435594
-    second: Enemy_walk2
+    second: Player_Enemy_14
   - first:
       213: 1666375382644819208
-    second: Enemy_walk3
+    second: Player_Enemy_15
   - first:
       213: 7296211175799116115
-    second: Enemy_walk4
+    second: Player_Enemy_16
   - first:
       213: 76349579084488678
-    second: Enemy_walk5
+    second: Player_Enemy_17
   - first:
       213: 9083813773936686677
-    second: Enemy_walk6
+    second: Player_Enemy_18
   - first:
       213: 1964618012750833431
-    second: Enemy_walk7
+    second: Player_Enemy_19
   - first:
       213: -3651145023362194410
     second: Player_Enemy_20
@@ -97,7 +97,7 @@ TextureImporter:
     second: Player_Enemy_30
   - first:
       213: 3655139981025330982
-    second: Enemy_easy_attack
+    second: Player_Enemy_31
   - first:
       213: 2674087495903599552
     second: Player_Enemy_32
@@ -193,7 +193,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle
+      name: Body
       rect:
         serializedVersion: 2
         x: 8
@@ -214,7 +214,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk
+      name: Player_Enemy_1
       rect:
         serializedVersion: 2
         x: 56
@@ -235,7 +235,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_2
+      name: Player_Enemy_2
       rect:
         serializedVersion: 2
         x: 104
@@ -256,7 +256,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_3
+      name: Player_Enemy_3
       rect:
         serializedVersion: 2
         x: 152
@@ -277,7 +277,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_4
+      name: Player_Enemy_4
       rect:
         serializedVersion: 2
         x: 8
@@ -298,7 +298,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_5
+      name: Player_Enemy_5
       rect:
         serializedVersion: 2
         x: 57
@@ -319,7 +319,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_6
+      name: Player_Enemy_6
       rect:
         serializedVersion: 2
         x: 105
@@ -340,7 +340,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walk_7
+      name: Player_Enemy_7
       rect:
         serializedVersion: 2
         x: 153
@@ -445,7 +445,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Idle
+      name: Player_Enemy_12
       rect:
         serializedVersion: 2
         x: 3
@@ -466,7 +466,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_walk1
+      name: Player_Enemy_13
       rect:
         serializedVersion: 2
         x: 50
@@ -487,7 +487,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_walk2
+      name: Player_Enemy_14
       rect:
         serializedVersion: 2
         x: 97
@@ -508,7 +508,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_walk3
+      name: Player_Enemy_15
       rect:
         serializedVersion: 2
         x: 146
@@ -529,7 +529,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_walk4
+      name: Player_Enemy_16
       rect:
         serializedVersion: 2
         x: 3
@@ -550,7 +550,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_walk5
+      name: Player_Enemy_17
       rect:
         serializedVersion: 2
         x: 52
@@ -571,7 +571,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_walk6
+      name: Player_Enemy_18
       rect:
         serializedVersion: 2
         x: 100
@@ -592,7 +592,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_walk7
+      name: Player_Enemy_19
       rect:
         serializedVersion: 2
         x: 148
@@ -844,7 +844,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_easy_attack
+      name: Player_Enemy_31
       rect:
         serializedVersion: 2
         x: 100

@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     public float distance;          //дистанция на которой наносится урон твердому телу
     public int damage;              //урон от пули
     public LayerMask whatIsSolid;   //маска определения жесткого тела
-    private Vector3 direction;      //Направлеине полета пули, инициализируется из скрипта Shoot, при создании объект Bullet
+    private Vector3 direction;      //Направление полета пули, инициализируется из скрипта Shoot, при создании объект Bullet
 
     void Update()
     {
@@ -23,13 +23,16 @@ public class Bullet : MonoBehaviour
             if(hitInfo.collider.CompareTag("Enemy"))
             {
                 //Получение компонента Enemy и вызво метода TakeDamage с передачей в метод параметра damage
-                //hitInfo.collider.GetComponent<Enemy>().TakeDamage(damage);
+                hitInfo.collider.GetComponent<Enemy>().TakeDamage(damage);
             }
             //Уничтожение пули
             Destroy(gameObject);
         }
         //Задание движение пуле
-        transform.Translate(new Vector2(direction.x, direction.y) * speed * Time.deltaTime);
+        transform.Translate(-Vector2.up * speed * Time.deltaTime);
+
+        //Вызов метода уничтожения пули
+        DestroyBullet();
     }
 
     /// <summary>
@@ -37,7 +40,12 @@ public class Bullet : MonoBehaviour
     /// </summary>
     /// <param name="direction">Вектор направления</param>
     public void SetDirection(Vector3 direction)
-    {
+    {  
         this.direction = direction;
+    }
+
+    private void DestroyBullet()
+    {
+        Destroy(gameObject, lifeTime);
     }
 }
