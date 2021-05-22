@@ -119,7 +119,8 @@ GameObject:
   m_Component:
   - component: {fileID: 912699135264277876}
   - component: {fileID: 912699135264277875}
-  m_Layer: 0
+  - component: {fileID: 1547493091}
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -155,12 +156,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 90
   speed: 5
-  health: 1
+  health: 5
   distanceAttack: 2
   speedAttack: 0.3
   timeRepeatAttack: 1
   damageArea: {fileID: 912699135877537008}
   maxSizeAttackArea: 3
+--- !u!58 &1547493091
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912699135264277877}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.89
 --- !u!1 &912699135391497997
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 912699135454377130}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,9 +472,9 @@ GameObject:
   - component: {fileID: 912699136560364835}
   - component: {fileID: 912699136560364833}
   - component: {fileID: 912699136560364834}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
