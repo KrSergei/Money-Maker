@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -11,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float speedAttack;       //Скорость атаки
     public float timeRepeatAttack;  //Время, через которое повторяется атака
     public Transform damageArea;    //Трансформ радиуса атаки
+    public Animator anim;
 
     [SerializeField]
     private float maxSizeAttackArea;//Максимальный радиус атаки
@@ -32,17 +32,26 @@ public class Enemy : MonoBehaviour
     {
         //Вызов метода для поворота в сторону цели
         RotationToTarget();
+
         //Движение к цели, пока расстояние больше, чес расстояние атаки.
-        if (Vector2.Distance(transform.position, target.position) > distanceAttack)
+        StartCoroutine(MovingToTarget());
+    }
+
+    /// <summary>
+    /// Передвижение к цели
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator MovingToTarget()
+    {
+        //Движение к цели, пока расстояние больше, чем половина расстояния атаки 
+        if (Vector2.Distance(transform.position, target.position) > distanceAttack * 0.5f)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-        }
+            //Включение анимации передвижения
+            anim.SetBool("Walk", true);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(1);
-        }
-
+        } else anim.SetBool("Walk", false);
+        yield return null;
     }
 
     /// <summary>

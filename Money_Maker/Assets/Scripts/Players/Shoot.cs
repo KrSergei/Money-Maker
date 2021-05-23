@@ -27,12 +27,7 @@ public class Shoot : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 //страт корутины стрельбы
-                //StartCoroutine(Shooting());
-                ////определение направления стрельбы  из текущего местоположения курсора вычитаем место положения точки стрельбы
-                Vector3 directionBullet = GetDirectionShoot() - shootPos.position;
-                //создание объекта пули в точке появления пули и указание ей направления движения
-                Instantiate(bullet, shootPos.position, transform.rotation).GetComponent<Bullet>().SetDirection(directionBullet);
-                //Instantiate(bullet, shootPos.position, transform.rotation);
+                StartCoroutine(Shooting());
                 //старт перезарядки
                 startTimeShooting = delayTimeShooting;
             }
@@ -44,12 +39,8 @@ public class Shoot : MonoBehaviour
     /// </summary>
     public IEnumerator Shooting()
     {
-        //определение направления стрельбы  из текущего местоположения курсора вычитаем место положения точки стрельбы
-        Vector3 directionBullet = GetDirectionShoot() - shootPos.position;
-
         //создание объекта пули в точке появления пули и указание ей направления движения
-        Instantiate(bullet, shootPos.position, transform.rotation).GetComponent<Bullet>().SetDirection(directionBullet);
-
+        Instantiate(bullet, shootPos.position, transform.rotation).GetComponent<Bullet>();
         yield return null;
     }
 

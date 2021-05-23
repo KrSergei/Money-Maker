@@ -136,7 +136,7 @@ Transform:
   m_GameObject: {fileID: 912699135264277877}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.96, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 912699136560364835}
   m_Father: {fileID: 0}
@@ -156,11 +156,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: 90
   speed: 5
-  health: 5
+  health: 1
   distanceAttack: 2
   speedAttack: 0.3
   timeRepeatAttack: 1
   damageArea: {fileID: 912699135877537008}
+  anim: {fileID: 912699136560364834}
   maxSizeAttackArea: 3
 --- !u!58 &1547493091
 CircleCollider2D:
@@ -488,7 +489,7 @@ Transform:
   m_GameObject: {fileID: 912699136560364836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 912699135454377130}
   m_Father: {fileID: 912699135264277876}
