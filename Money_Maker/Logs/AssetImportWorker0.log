@@ -1811,3 +1811,83 @@ System memory in use after: 91.3 MB.
 Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2531.
 Total: 2.771544 ms (FindLiveObjects: 0.264378 ms CreateObjectMapping: 0.093435 ms MarkObjects: 2.392850 ms  DeleteObjects: 0.019112 ms)
 
+========================================================================
+Received Import Request.
+  Time since last request: 1441.435374 seconds.
+  path: Assets/Prefabs/EnemyType2.prefab
+  artifactKey: Guid(40fedbe2402387e458d910785e4606a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/EnemyType2.prefab using Guid(40fedbe2402387e458d910785e4606a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0e1838178b36e5fa1e095ecdfc8fedb') in 0.090741 seconds
+  Import took 0.095852 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.066306 seconds.
+  path: Assets/Prefabs/EnemyBoss.prefab
+  artifactKey: Guid(5872e912ad55b954ca933c7f69a09f4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/EnemyBoss.prefab using Guid(5872e912ad55b954ca933c7f69a09f4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9b4e57d3c995785b34db37c5df4308d') in 0.022334 seconds
+  Import took 0.027329 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001377 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.49 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.057 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.45 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1804 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 91.2 MB.
+System memory in use after: 91.3 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2536.
+Total: 2.641301 ms (FindLiveObjects: 0.259777 ms CreateObjectMapping: 0.088834 ms MarkObjects: 2.275703 ms  DeleteObjects: 0.015572 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 23.399308 seconds.
+  path: Assets/Prefabs/EnemyBoss.prefab
+  artifactKey: Guid(5872e912ad55b954ca933c7f69a09f4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/EnemyBoss.prefab using Guid(5872e912ad55b954ca933c7f69a09f4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac3d2cba266b2d87cb21940eb84bea1b') in 0.083684 seconds
+  Import took 0.088420 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.041924 seconds.
+  path: Assets/Prefabs/EnemyBoss.prefab
+  artifactKey: Guid(5872e912ad55b954ca933c7f69a09f4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/EnemyBoss.prefab using Guid(5872e912ad55b954ca933c7f69a09f4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac3d2cba266b2d87cb21940eb84bea1b') in 0.020231 seconds
+  Import took 0.024912 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001313 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.45 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.078 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.89 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1804 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 91.2 MB.
+System memory in use after: 91.3 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2541.
+Total: 2.870641 ms (FindLiveObjects: 0.264024 ms CreateObjectMapping: 0.086356 ms MarkObjects: 2.490178 ms  DeleteObjects: 0.027960 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 42.699244 seconds.
+  path: Assets/Prefabs/EnemyBoss.prefab
+  artifactKey: Guid(5872e912ad55b954ca933c7f69a09f4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/EnemyBoss.prefab using Guid(5872e912ad55b954ca933c7f69a09f4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a24868a8c12260377ec67e1eaa37f72') in 0.074125 seconds
+  Import took 0.078835 seconds .
+
