@@ -1899,6 +1899,7 @@ Received Import Request.
 Start importing Assets/Prefabs/EnemyBoss.prefab using Guid(5872e912ad55b954ca933c7f69a09f4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd29d802434f3bbc357b2796bed8d15e9') in 0.026001 seconds
   Import took 0.034010 seconds .
 
+<<<<<<< Updated upstream
 ========================================================================
 Received Import Request.
   Time since last request: 52.209240 seconds.
@@ -3199,3 +3200,5 @@ C:\Windows\SYSTEM32\dbghelp.dll:dbghelp.dll (00007FFAA6010000), size: 1613824 (r
 
 A crash has been intercepted by the crash handler. For call stack and other details, see the latest crash report generated in:
  * C:/Users/S/AppData/Local/Temp/Unity/Editor/Crashes
+=======
+>>>>>>> Stashed changes
