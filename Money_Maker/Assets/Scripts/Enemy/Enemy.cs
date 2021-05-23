@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     public float distanceAttack;    //Дистанция на длину происходит атака
     public float speedAttack;       //Скорость атаки
     public float timeRepeatAttack;  //Время, через которое повторяется атака
-    public Transform damageArea;    //Трансформ радиуса атаки
+    public Transform[] damageArea;  //Массив позиций точек атаки
     public Animator anim;           //Аниматор
 
     [SerializeField]
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
         //Вызов метода для поворота в сторону цели
         RotationToTarget();
 
-        //Движение к цели, пока расстояние больше, чес расстояние атаки.
+        //Движение к цели, пока цель не умрет.
         StartCoroutine(MovingToTarget());
     }
 
@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour
         if (doAttack == null)
         {
             //Инициализация корутины doAttack
-            doAttack = DoAttack();
+            doAttack = DoRadiusAttack();
             //запуск корутины doAttack
             StartCoroutine(doAttack);
         }
@@ -106,7 +106,7 @@ public class Enemy : MonoBehaviour
     /// Совершение атаки
     /// </summary>
     /// <returns></returns>
-    IEnumerator DoAttack()
+    IEnumerator DoRadiusAttack()
     {
         //сброс области атаки в 0
         SetAttackArea();
@@ -120,9 +120,12 @@ public class Enemy : MonoBehaviour
         {
             //измение текущего времени атаки
             startTime += Time.deltaTime;
-            //изменение обслати атаки
-            damageArea.localScale = new Vector2(damageArea.localScale.x + Time.deltaTime * speedChangeArea,
-                            damageArea.localScale.y + Time.deltaTime * speedChangeArea);
+            //изменение облаcти атаки
+            for (int i = 0; i < damageArea.Length; i++)
+            {
+                damageArea[i].localScale = new Vector2(damageArea[i].localScale.x + Time.deltaTime * speedChangeArea,
+                                            damageArea[i].localScale.y + Time.deltaTime * speedChangeArea);
+            }
             yield return null;
         }
 
@@ -134,15 +137,18 @@ public class Enemy : MonoBehaviour
             //задержка перед вызовом корутины атаки
             yield return new WaitForSeconds(timeRepeatAttack);
             //презапуск
-            StartCoroutine(DoAttack());
+            StartCoroutine(DoRadiusAttack());
         }
     }
 
     /// <summary>
-    /// утсановка области атаки в 0
+    /// утсановка области атаки в 0 для всех точек атаки
     /// </summary>
     private void SetAttackArea()
     {
-        damageArea.localScale = new Vector2(0f, 0f);
+        for (int i = 0; i < damageArea.Length; i++)
+        {
+            damageArea[i].localScale = new Vector2(0f, 0f);
+        }
     }
 }
