@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     public float speedAttack;       //Скорость атаки
     public float timeRepeatAttack;  //Время, через которое повторяется атака
     public Transform damageArea;    //Трансформ радиуса атаки
-    public Animator anim;
+    public Animator anim;           //Аниматор
 
     [SerializeField]
     private float maxSizeAttackArea;//Максимальный радиус атаки
