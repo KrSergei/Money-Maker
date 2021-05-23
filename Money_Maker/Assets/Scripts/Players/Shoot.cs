@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shoot : MonoBehaviour
@@ -9,15 +8,7 @@ public class Shoot : MonoBehaviour
 
     public float delayTimeShooting;     //интервал между выстрелами
     public float offset;
-
     private float startTimeShooting;    //время до начала выстрела
-    private LookAtMouseAndRotate currentMousePosition; //Текущая позиция курсора мышки
-
-    private void Start()
-    {
-        //Получение компонента LookAtMouseAndRotate
-        currentMousePosition = GetComponentInChildren<LookAtMouseAndRotate>();
-    }
 
     void Update()
     {
@@ -42,15 +33,5 @@ public class Shoot : MonoBehaviour
         //создание объекта пули в точке появления пули и указание ей направления движения
         Instantiate(bullet, shootPos.position, transform.rotation).GetComponent<Bullet>();
         yield return null;
-    }
-
-    /// <summary>
-    /// Получение текущей позиции мышки из скрипта LookAtMouseAndRotate
-    /// </summary>
-    /// <returns></returns>
-    public Vector3 GetDirectionShoot()
-    {
-        //return currentMousePosition.GetMousePos() - shootPos.position;
-        return currentMousePosition.GetMousePos();
     }
 }

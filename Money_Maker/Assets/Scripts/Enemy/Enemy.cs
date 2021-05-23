@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
     public float offset;            //угол поворота
     public float speed;             //скорость передвижени€
     public int health;              //текущее здоровье
-    public float distanceAttack;    //ƒистанци€ на длину происходит атака
+    public float minDistanceToTarget;  //ћинимальна€ дистанци€ до цели 
     public float speedAttack;       //—корость атаки
     public float timeRepeatAttack;  //¬рем€, через которое повтор€етс€ атака
     public Transform[] damageArea;  //ћассив позиций точек атаки
@@ -43,8 +43,8 @@ public class Enemy : MonoBehaviour
     /// <returns></returns>
     IEnumerator MovingToTarget()
     {
-        //ƒвижение к цели, пока рассто€ние больше, чем половина рассто€ни€ атаки 
-        if (Vector2.Distance(transform.position, target.position) > distanceAttack * 0.5f)
+        //≈сли рассто€ние до цели больше чем distanceAttack
+        if (Vector2.Distance(transform.position, target.position) > minDistanceToTarget)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             //¬ключение анимации передвижени€
