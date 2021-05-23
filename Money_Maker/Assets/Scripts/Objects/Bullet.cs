@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -29,21 +28,25 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
         //Задание движение пуле
-        transform.Translate(-Vector2.up * speed * Time.deltaTime);
+        StartCoroutine(Shoot());
 
-        //Вызов метода уничтожения пули
+        //Вызов метода уничтожения пули в любом случае
         DestroyBullet();
     }
 
     /// <summary>
-    /// Установка вектора движения, задается при создании объекта из скрипта Shoot
+    /// Задание направления и передвижение пули
     /// </summary>
-    /// <param name="direction">Вектор направления</param>
-    public void SetDirection(Vector3 direction)
-    {  
-        this.direction = direction;
+    /// <returns></returns>
+    IEnumerator Shoot()
+    {
+        transform.Translate(-Vector2.up * speed * Time.deltaTime);
+        yield return null;
     }
 
+    /// <summary>
+    /// Уничтожение пули после окончания времени жизни
+    /// </summary>
     private void DestroyBullet()
     {
         Destroy(gameObject, lifeTime);

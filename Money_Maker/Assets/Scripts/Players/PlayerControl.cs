@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-
     public float speed;    //скорость игрока
-
     public Animator anim;   //компонент аниматор игрока
 
     void Update()
