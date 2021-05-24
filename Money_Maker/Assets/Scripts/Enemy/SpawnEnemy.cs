@@ -10,12 +10,6 @@ public class SpawnEnemy : MonoBehaviour
     public int countEnemy;                  //Общее количество генерируемых объектов
     public int maxSpawnCountEnemy;          //Максимальное количество генерируемых объектов на одной точке
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {

@@ -395,3 +395,19 @@ System memory in use after: 90.7 MB.
 Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 2321.
 Total: 2.784995 ms (FindLiveObjects: 0.498319 ms CreateObjectMapping: 0.188993 ms MarkObjects: 2.072908 ms  DeleteObjects: 0.022297 ms)
 
+========================================================================
+Received Import Request.
+  Time since last request: 1474.397038 seconds.
+  path: Assets/Scripts/Enemy/SpawnEnemy.cs
+  artifactKey: Guid(ba369c7c87488274480d4be4a4a507e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Enemy/SpawnEnemy.cs using Guid(ba369c7c87488274480d4be4a4a507e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '700ea5065131b2610cb01eadb80798af') in 0.011071 seconds
+  Import took 0.016762 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.025772 seconds.
+  path: Assets/Scripts/Enemy/SpawnEnemy.cs
+  artifactKey: Guid(ba369c7c87488274480d4be4a4a507e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Enemy/SpawnEnemy.cs using Guid(ba369c7c87488274480d4be4a4a507e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '700ea5065131b2610cb01eadb80798af') in 0.005920 seconds
+  Import took 0.011376 seconds .
+
