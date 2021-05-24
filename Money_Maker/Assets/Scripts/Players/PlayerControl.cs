@@ -50,7 +50,6 @@ public class PlayerControl : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         //Если есть столкновение с коллайдером "Enemy", то отнимается один пункт здоровья
-        Debug.Log(col.tag);
         if (col.tag == "Enemy")
         {
             Debug.Log("health - 1");
