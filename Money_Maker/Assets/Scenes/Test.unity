@@ -184,8 +184,8 @@ MonoBehaviour:
   - {fileID: 912699135264277877, guid: 98d76715f4a08f342bd7f26e52c64326, type: 3}
   - {fileID: 912699135264277877, guid: 40fedbe2402387e458d910785e4606a0, type: 3}
   - {fileID: 912699135264277877, guid: 5872e912ad55b954ca933c7f69a09f4f, type: 3}
-  countEnemy: 15
-  maxCountSpawnedEnemyInSpot: 3
+  countEnemy: 6
+  maxCountSpawnedEnemyInSpot: 2
   timeBetweenWaves: 5
   countEnemyWave: 3
 --- !u!1 &671441846

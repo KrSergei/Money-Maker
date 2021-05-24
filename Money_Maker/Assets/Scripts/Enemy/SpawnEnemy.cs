@@ -79,6 +79,9 @@ public class SpawnEnemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Реализация пеерзапуска волны
+    /// </summary>
     private void RestarWave()
     {
         //Инкремент номера волны
