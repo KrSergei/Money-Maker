@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour
         if (doAttack == null)
         {
             //Инициализация корутины doAttack
-            doAttack = DoRadiusAttack();
+            doAttack = DoAttack();
             //запуск корутины doAttack
             StartCoroutine(doAttack);
         }
@@ -106,7 +106,7 @@ public class Enemy : MonoBehaviour
     /// Совершение атаки
     /// </summary>
     /// <returns></returns>
-    IEnumerator DoRadiusAttack()
+    IEnumerator DoAttack()
     {
         //сброс области атаки в 0
         SetAttackArea();
@@ -137,7 +137,7 @@ public class Enemy : MonoBehaviour
             //задержка перед вызовом корутины атаки
             yield return new WaitForSeconds(timeRepeatAttack);
             //презапуск
-            StartCoroutine(DoRadiusAttack());
+            StartCoroutine(DoAttack());
         }
     }
 
