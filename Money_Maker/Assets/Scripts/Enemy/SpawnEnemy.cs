@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnEnemy : MonoBehaviour
 {
 
-    public List<Transform> EnemySpotsSpawn;     //массив точек генерации объекта типа enemy
+    public List<Transform> EnemySpotsSpawn; //массив точек генерации объекта типа enemy
     public GameObject[] typeEnemy;          //массив типов enemy
 
     public int countEnemy;                  //Общее количество генерируемых объектов
@@ -14,7 +14,10 @@ public class SpawnEnemy : MonoBehaviour
 
     [SerializeField]
     private int countEnemyWave;             //Количество волн врагов 
+    [SerializeField]
     private int currentWaves;               //Номер текущей итерации генерации объектов
+    [SerializeField]
+    private int destroedEnemy;              //Количество уничтоженных врагов
 
     private void Start()
     {
@@ -72,11 +75,11 @@ public class SpawnEnemy : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
-        //Проверка, нужно ли запускать новую волну
-        if (countEnemyForSpawn <= 0 && currentWave < typeEnemy.Length - 1)
-        {
-            RestarWave();
-        }
+        ////Проверка, нужно ли запускать новую волну
+        //if (destroedEnemy >= countEnemy && currentWave < typeEnemy.Length - 1)
+        //{
+        //    RestarWave();
+        //}
     }
 
     /// <summary>
@@ -84,6 +87,8 @@ public class SpawnEnemy : MonoBehaviour
     /// </summary>
     private void RestarWave()
     {
+        //Сброс количества уничтоженных объектов
+        destroedEnemy = 0;
         //Инкремент номера волны
         currentWaves++;
         //Если текущая волна равна длине массива генерируемых объектов,
@@ -138,6 +143,15 @@ public class SpawnEnemy : MonoBehaviour
             EnemySpotsSpawn.RemoveAt(indexSpot);
             //Добавление удаленного трансформа в список точек генерации
             EnemySpotsSpawn.Add(temp);
+        }
+    }
+
+    public void CalculateDestroedEnemy()
+    {
+        destroedEnemy++;
+        if(destroedEnemy >= countEnemy && currentWaves < typeEnemy.Length - 1)
+        {
+            RestarWave();
         }
     }
 }

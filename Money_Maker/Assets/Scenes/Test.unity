@@ -146,6 +146,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointForKilledEnemy: 0
+--- !u!114 &231971254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231971252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba369c7c87488274480d4be4a4a507e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemySpotsSpawn:
+  - {fileID: 704523455}
+  - {fileID: 1646812422}
+  - {fileID: 1057368667}
+  - {fileID: 812966657}
+  - {fileID: 1695499613}
+  - {fileID: 671441847}
+  typeEnemy:
+  - {fileID: 912699135264277877, guid: 98d76715f4a08f342bd7f26e52c64326, type: 3}
+  - {fileID: 912699135264277877, guid: 40fedbe2402387e458d910785e4606a0, type: 3}
+  - {fileID: 912699135264277877, guid: 5872e912ad55b954ca933c7f69a09f4f, type: 3}
+  countEnemy: 6
+  maxCountSpawnedEnemyInSpot: 2
+  timeBetweenWaves: 5
+  countEnemyWave: 3
 --- !u!1 &570050005
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +213,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 570050005}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba369c7c87488274480d4be4a4a507e8, type: 3}
   m_Name: 
