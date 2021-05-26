@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
     public float offset;            //угол поворота
     public float speed;             //скорость передвижения
     public int health;              //текущее здоровье
-    public float distanceAttack;    //Дистанция на длину происходит атака
+    public float minDistanceToTarget;  //Минимальная дистанция до цели 
     public float speedAttack;       //Скорость атаки
     public float timeRepeatAttack;  //Время, через которое повторяется атака
     public Transform[] damageArea;  //Массив позиций точек атаки
@@ -43,8 +43,8 @@ public class Enemy : MonoBehaviour
     /// <returns></returns>
     IEnumerator MovingToTarget()
     {
-        //Движение к цели, пока расстояние больше, чем половина расстояния атаки 
-        if (Vector2.Distance(transform.position, target.position) > distanceAttack * 0.5f)
+        //Если расстояние до цели больше чем distanceAttack
+        if (Vector2.Distance(transform.position, target.position) > minDistanceToTarget)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             //Включение анимации передвижения
@@ -96,7 +96,7 @@ public class Enemy : MonoBehaviour
         if (doAttack == null)
         {
             //Инициализация корутины doAttack
-            doAttack = DoRadiusAttack();
+            doAttack = DoAttack();
             //запуск корутины doAttack
             StartCoroutine(doAttack);
         }
@@ -106,7 +106,7 @@ public class Enemy : MonoBehaviour
     /// Совершение атаки
     /// </summary>
     /// <returns></returns>
-    IEnumerator DoRadiusAttack()
+    IEnumerator DoAttack()
     {
         //сброс области атаки в 0
         SetAttackArea();
@@ -137,7 +137,7 @@ public class Enemy : MonoBehaviour
             //задержка перед вызовом корутины атаки
             yield return new WaitForSeconds(timeRepeatAttack);
             //презапуск
-            StartCoroutine(DoRadiusAttack());
+            StartCoroutine(DoAttack());
         }
     }
 
