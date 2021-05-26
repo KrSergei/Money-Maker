@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject gameManager;
+
     public float offset;            //угол поворота
     public float speed;             //скорость передвижения
     public int health;              //текущее здоровье
@@ -19,7 +21,7 @@ public class Enemy : MonoBehaviour
     private float maxSizeAttackArea;//Максимальный радиус атаки
     private Transform target;       //цель к которой должен двигаться
 
-    private CalculateValues calculatePoint; //Объект, в который передается  pointPrice за уничтожение объекта Enemy
+    private CalculateValues calculatePoint;     //Объект, в который передается pointPrice за уничтожение объекта Enemy
     private IEnumerator doAttack;   //Корутина атаки
 
     private void Start()
@@ -92,13 +94,16 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0)
         {
-            //Инкремент количества убитых врагов
+            //Вызов метода подсчета количества очков за уничтоженный объект
             calculatePoint.SetPoint(pointPrice);
             //уничтожение объекта
             Destroy(gameObject);
         }
     }
 
+    /// <summary>
+    /// Проверка на запуск корутины атаки
+    /// </summary>
     private void CheckAndStartCoroutine()
     {
         //Проверка корутины doAttack на значения, если она null,

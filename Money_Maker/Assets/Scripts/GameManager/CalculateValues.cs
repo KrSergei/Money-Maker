@@ -6,13 +6,12 @@ public class CalculateValues : MonoBehaviour
 {
     [SerializeField]
     private int pointForKilledEnemy;  //Количество уничтоженных врагов
-
+   
     public int PointForKilledEnemy { get => pointForKilledEnemy; set => pointForKilledEnemy = value; }
-
-
+   
     public void GetCountPoints()
     {
-        Debug.Log("POINTS = " + PointForKilledEnemy);
+        Debug.Log("POINTS = " + GetCurrentPoints());
     }
 
     /// <summary>
@@ -23,6 +22,12 @@ public class CalculateValues : MonoBehaviour
     {
         pointForKilledEnemy += value;
         GetCountPoints();
+        gameObject.GetComponent<SpawnEnemy>().CalculateDestroedEnemy();
+    }
+
+    public int GetCurrentPoints()
+    {
+        return PointForKilledEnemy;
     }
 
 }
