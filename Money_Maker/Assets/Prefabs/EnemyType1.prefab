@@ -177,12 +177,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e9b7424b618ae4abbc0eaaf5fb6943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 7380985743794833992, guid: fb4bb35563161834c8871dd3805c72cb, type: 3}
   offset: 90
   speed: 5
   health: 1
   minDistanceToTarget: 0.1
   speedAttack: 0.3
   timeRepeatAttack: 1
+  pointPrice: 5
   damageArea:
   - {fileID: 912699136635402746}
   - {fileID: 912699134951364032}
