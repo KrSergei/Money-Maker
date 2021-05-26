@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour
     public float minDistanceToTarget;  //Минимальная дистанция до цели 
     public float speedAttack;       //Скорость атаки
     public float timeRepeatAttack;  //Время, через которое повторяется атака
+    public int pointPrice;          //Стоимость за учничтожение объекта
+
+
     public Transform[] damageArea;  //Массив позиций точек атаки
     public Animator anim;           //Аниматор
 
@@ -16,12 +19,15 @@ public class Enemy : MonoBehaviour
     private float maxSizeAttackArea;//Максимальный радиус атаки
     private Transform target;       //цель к которой должен двигаться
 
+    private CalculateValues calculatePoint; //Объект, в который передается  pointPrice за уничтожение объекта Enemy
     private IEnumerator doAttack;   //Корутина атаки
 
     private void Start()
     {
         //поиск цели - игрока
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        //получение компонента calculatePoint
+        calculatePoint = GameObject.FindGameObjectWithTag("GameManager").GetComponent<CalculateValues>();
         //сброс области атаки
         SetAttackArea();
         //Вызов метода для проверки и запуска корутины doAttack
@@ -86,6 +92,9 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0)
         {
+            //Инкремент количества убитых врагов
+            calculatePoint.SetPoint(pointPrice);
+            //уничтожение объекта
             Destroy(gameObject);
         }
     }

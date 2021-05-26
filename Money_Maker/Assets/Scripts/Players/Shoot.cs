@@ -29,9 +29,6 @@ public class Shoot : MonoBehaviour
 
         currentCountAmmo = maxCountAmmo;
         currentAmmoInMagazine = ammoInMagazine;
-
-        Debug.Log("currentCountAmmo : " + currentCountAmmo);
-        Debug.Log("currentAmmoInMagazine : " + currentAmmoInMagazine);
     }
 
     void Update()

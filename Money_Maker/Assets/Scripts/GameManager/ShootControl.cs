@@ -14,8 +14,6 @@ public class ShootControl : MonoBehaviour
     private float timeForBuyingAmmo;     //Период времени, в который можно купить патроны
     [SerializeField]
     private int countBoughtAmmo;         //Количество патронов при разовой покупки
-    [SerializeField]
-    private bool canBuyAmmo;            //Флаг о возможности покупки патронов
 
     public int MaxCountAmmo { get => maxCountAmmo; set => maxCountAmmo = value; }
     public int MaxCountAmmoInMagazine { get => maxCountAmmoInMagazine; set => maxCountAmmoInMagazine = value; }
@@ -28,12 +26,12 @@ public class ShootControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
