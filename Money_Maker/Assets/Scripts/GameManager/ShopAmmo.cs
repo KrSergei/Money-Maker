@@ -3,7 +3,6 @@ using UnityEngine;
 public class ShopAmmo : MonoBehaviour
 {
     public GameObject uiManager;
-
     private UIPlaying uiPlaying;            //Игровой интефейс
 
     private CalculateValues calculateValue;

@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class CalculateValues : MonoBehaviour
 {
+    public GameObject uiManager;
+    private UIPlaying uiPlaying;            //Игровой интефейс
+
     [SerializeField]
     private int pointForKilledEnemy;  //Количество уничтоженных врагов
-   
-    public int PointForKilledEnemy { get => pointForKilledEnemy; set => pointForKilledEnemy = value; }
-   
-    public void GetCountPoints()
+
+    private void Start()
     {
-        Debug.Log("POINTS = " + PointForKilledEnemy);
+        uiPlaying = uiManager.GetComponent<UIPlaying>();
+    }
+
+    public int GetCountPoints()
+    {
+        return pointForKilledEnemy;
     }
 
     /// <summary>
@@ -21,7 +27,7 @@ public class CalculateValues : MonoBehaviour
     public void SetPoint(int value)
     {
         pointForKilledEnemy += value;
-        GetCountPoints();
+        //Вызов меода для определния количества уничтоженных объъектов
         gameObject.GetComponent<SpawnEnemy>().CalculateDestroedEnemy();
     }
 }
