@@ -11,7 +11,7 @@ public class CalculateValues : MonoBehaviour
    
     public void GetCountPoints()
     {
-        Debug.Log("POINTS = " + GetCurrentPoints());
+        Debug.Log("POINTS = " + PointForKilledEnemy);
     }
 
     /// <summary>
@@ -24,10 +24,4 @@ public class CalculateValues : MonoBehaviour
         GetCountPoints();
         gameObject.GetComponent<SpawnEnemy>().CalculateDestroedEnemy();
     }
-
-    public int GetCurrentPoints()
-    {
-        return PointForKilledEnemy;
-    }
-
 }
