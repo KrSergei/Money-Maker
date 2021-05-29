@@ -3,16 +3,23 @@ using UnityEngine.UI;
 
 public class UIPlaying : MonoBehaviour
 {
-    public GameObject gameManager;              //объкт GameManager
+    public GameObject gameManager,              //объкт GameManager
+                      player;                   //объкт Player
+
     private ShopAmmo shopAmmo;                  //компонет ShopAmmo GameManager
     private CalculateValues calculateValues;    //компонет CalculateValues GameManager
-    public Text announcementShop;               //Объявления магазина
-    public Text remainigTimeToShopText;         //Оставшееся время до открытия магазина
-    public Text currentPoints;                  //Текущие количество очков
+
+    private Shoot shoot;                        //компонет Shoot Player;
+
+    public Text announcementShop,               //Объявления магазина
+                remainigTimeToShopText,         //Оставшееся время до открытия магазина
+                currentPoints,                  //Текущие количество очков
+                currentAmmo,                    //Текущее количество патронов в запасе
+                currentAmmoInMagazine;          //Текущее количество патронов в мгазине
 
 
     //Текст во время обрратного отсчета до окрытия магазина
-    private string textForRemaninng = "TIME TO BUY AMMO - ";
+    private string textForRemaningTime = "TIME TO BUY AMMO - ";
     //Текст во время открытия магазина 
     private string textForShopping = "SHOP!! SHOP!! SHOP!!";
 
@@ -24,19 +31,28 @@ public class UIPlaying : MonoBehaviour
         shopAmmo = gameManager.GetComponent<ShopAmmo>();
         //Установка начального значения очков в 0
         calculateValues = gameManager.GetComponent<CalculateValues>();
+        //Получение компонента Shoot
+        shoot = player.GetComponentInChildren<Shoot>();
+        //Стартовая установка строки для объявления
+        announcementShop.text = textForRemaningTime;
+        //Показ времени до открытия/закрытия магазина
+        //Стартовое получение значений количество патровно в магазине и количества запасных патронов
+        ShowCurrentValueForText(currentAmmoInMagazine, shoot.CurrentAmmoInMagazine);
+        ShowCurrentValueForText(currentAmmo, shoot.CurrentCountAmmo);
 
-        announcementShop.text = textForRemaninng;
-        //Получение времени до открытия магазина
-        ShowTimeForShopAmmo();
     }
 
 
     void Update()
     {
         //Показ оставшегося времени до закртыия/открытия магазина
-        ShowTimeForShopAmmo();
+        ShowCurrentValueForText(remainigTimeToShopText, Mathf.Round(shopAmmo.CurrentLetfTime));
         //Вызов метода показа текущего количество очков
-        ShowCurrentPoints();
+        ShowCurrentValueForText(currentPoints, calculateValues.PointForKilledEnemy);
+        //Обновление значений
+        ShowCurrentValueForText(currentAmmoInMagazine, shoot.CurrentAmmoInMagazine);
+        ShowCurrentValueForText(currentAmmo, shoot.CurrentCountAmmo);
+        
     }
 
     /// <summary>
@@ -45,29 +61,23 @@ public class UIPlaying : MonoBehaviour
     public void SetTextForRemainingTime(bool value = false)
     {
         //Смена текста в зависимости отзначения value
-        announcementShop.text = (!value) ? textForRemaninng : textForShopping;
+        announcementShop.text = (!value) ? textForRemaningTime : textForShopping;
     }
 
     /// <summary>
-    /// Установка текста 
+    /// Вывод обновляемых данных на экран
+    /// Выводтся следующие данные:
+    /// время до открытия/закрытия магазина
+    /// количество очков, 
+    /// количество патровнов в магазине,
+    /// количество запасных патронов
     /// </summary>
-    public void SetTextForShoppingTime()
-    {
-        announcementShop.text = textForShopping;
-    }
-
-    /// <summary>
-    /// Вывод обратного отсчета времени на экран
-    /// </summary>
-    public void ShowTimeForShopAmmo()
-    {
-        //Обратный отсчет времени
-        remainigTimeToShopText.text = Mathf.Round(shopAmmo.CurrentLetfTime).ToString();
-    }    
-
-    public void ShowCurrentPoints()
+    /// <param name="textValue">Строка на экране, в которую выводятся данные</param>
+    /// <param name="value">значение, которое выводится</param>
+    public void ShowCurrentValueForText(Text textValue, float value)
     {
         //Получение текущего количества очков
-        currentPoints.text = calculateValues.GetCountPoints().ToString();
+        textValue.text = value.ToString();
     }
+
 }

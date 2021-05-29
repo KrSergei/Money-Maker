@@ -10,14 +10,11 @@ public class CalculateValues : MonoBehaviour
     [SerializeField]
     private int pointForKilledEnemy;  //Количество уничтоженных врагов
 
+    public int PointForKilledEnemy { get => pointForKilledEnemy; set => pointForKilledEnemy = value; }
+
     private void Start()
     {
         uiPlaying = uiManager.GetComponent<UIPlaying>();
-    }
-
-    public int GetCountPoints()
-    {
-        return pointForKilledEnemy;
     }
 
     /// <summary>
@@ -26,7 +23,7 @@ public class CalculateValues : MonoBehaviour
     /// <param name="value">Цена за уничтоженный объект</param>
     public void SetPoint(int value)
     {
-        pointForKilledEnemy += value;
+        PointForKilledEnemy += value;
         //Вызов меода для определния количества уничтоженных объъектов
         gameObject.GetComponent<SpawnEnemy>().CalculateDestroedEnemy();
     }

@@ -3,20 +3,45 @@ using UnityEngine;
 public class ShopAmmo : MonoBehaviour
 {
     public GameObject uiManager;
+    public GameObject player;               //объкт Player
+
+
     private UIPlaying uiPlaying;            //Игровой интефейс
 
     private CalculateValues calculateValue;
     public float periodBetweenBuying;       //Время между активацией магазина для покупки патронов
     public float timeAccessToShop;          //Время активации магазина для покупки патронов
+    public int countBuyingAmmo;             //Количество покупаемых патронов
+    public int pricePointForSellingAmmo;    //Количество очков за которые покупаются патроны
+
+    private Shoot shoot;                    //компонет Shoot Player;
 
     public float CurrentLetfTime { get; set; }
-    public bool IsActiveShop { get; set; } = false;
+
+    public bool isActiveShop = false;
+
+    public bool GetIsActiveShop()
+    {
+        return isActiveShop;
+    }
+
+    public void SetIsActiveShop(bool value)
+    {
+        isActiveShop = value;
+    }
 
     private void Start()
     {
+        calculateValue = GetComponent<CalculateValues>();
         uiPlaying = uiManager.GetComponentInChildren<UIPlaying>();
+        //Получение компонента Shoot
+        shoot = player.GetComponentInChildren<Shoot>();
+
+        isActiveShop = false;
+
         //Определение, какое время включать для обратного отсчета
-        DecideTimeRemain(IsActiveShop);
+        CurrentLetfTime = DecideTimeRemain(GetIsActiveShop());
+        Debug.Log(CurrentLetfTime);
     }
     private void Update()
     {
@@ -26,11 +51,11 @@ public class ShopAmmo : MonoBehaviour
         if (CurrentLetfTime <= 0)
         {
             //Передача значения IsActiveShop в игровой интерфейс для показа статуса магазина
-            uiPlaying.SetTextForRemainingTime(IsActiveShop);
+            uiPlaying.SetTextForRemainingTime(GetIsActiveShop());
             //Смена флага для изменения статуса магазина(открыт/закрыт)
-            SetValueForShop(IsActiveShop);
+            SetValueForShop(GetIsActiveShop());
             //Определение нового времени для отсчета в зависимости от состояния флага isActiveShop
-            CurrentLetfTime = DecideTimeRemain(IsActiveShop);
+            CurrentLetfTime = DecideTimeRemain(GetIsActiveShop());
         }
     }
 
@@ -41,7 +66,7 @@ public class ShopAmmo : MonoBehaviour
     /// <returns></returns>
     private float DecideTimeRemain(bool shopStatus)
     {
-       return (shopStatus) ? periodBetweenBuying : timeAccessToShop;
+       return (!shopStatus) ? periodBetweenBuying : timeAccessToShop;
     }
 
     /// <summary>
@@ -50,6 +75,28 @@ public class ShopAmmo : MonoBehaviour
     /// <param name="value">Значение флага</param>
     private void SetValueForShop(bool value)
     {
-        IsActiveShop = !value;
+        SetIsActiveShop(!value);
+    }
+
+    /// <summary>
+    /// Попытка покупки патронов за очки
+    /// </summary>
+    public void TryBuyAmmo()
+    {
+        Debug.Log("GetIsActiveShop - " + GetIsActiveShop());
+        //Проверка на открытие магазина и что
+        if (GetIsActiveShop())
+        {
+            //Если количество очков >= pricePointForSellingAmmo, то покупка патронов, иначе вывод сообщения об недостаточности очков
+            if(calculateValue.PointForKilledEnemy >= pricePointForSellingAmmo)
+            {
+                calculateValue.PointForKilledEnemy -= pricePointForSellingAmmo;
+                shoot.CurrentCountAmmo += countBuyingAmmo;
+                Debug.Log("BOUTH AMMO");
+
+            } else  Debug.Log("YOU ARE BAD SHOOTER!!! DON'T ENOUGH POINTS");
+
+        } else  Debug.Log("SHOP IS CLOSLED!! CLOSED!! CLOSED!!");
+      
     }
 }
