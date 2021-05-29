@@ -74,12 +74,6 @@ public class SpawnEnemy : MonoBehaviour
             //Пауза перед генерацией объекта
             yield return new WaitForSeconds(1f);
         }
-
-        ////Проверка, нужно ли запускать новую волну
-        //if (destroedEnemy >= countEnemy && currentWave < typeEnemy.Length - 1)
-        //{
-        //    RestarWave();
-        //}
     }
 
     /// <summary>
@@ -146,9 +140,13 @@ public class SpawnEnemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Подчсет уничтоженных объектов
+    /// </summary>
     public void CalculateDestroedEnemy()
     {
         destroedEnemy++;
+        //Проверка на запуск новой волны
         if(destroedEnemy >= countEnemy && currentWaves < typeEnemy.Length - 1)
         {
             RestarWave();
