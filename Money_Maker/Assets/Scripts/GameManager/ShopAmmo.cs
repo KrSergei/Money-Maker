@@ -17,17 +17,19 @@ public class ShopAmmo : MonoBehaviour
     private Shoot shoot;                    //компонет Shoot Player;
 
     public float CurrentLetfTime { get; set; }
-
-    public bool isActiveShop = false;
+  
+    [SerializeField]
+    private bool isActiveShop = false;
+    public bool IsActiveShop { get => isActiveShop; set => isActiveShop = value; }
 
     public bool GetIsActiveShop()
     {
-        return isActiveShop;
+        return IsActiveShop;
     }
 
     public void SetIsActiveShop(bool value)
     {
-        isActiveShop = value;
+        IsActiveShop = value;
     }
 
     private void Start()
@@ -37,7 +39,7 @@ public class ShopAmmo : MonoBehaviour
         //Получение компонента Shoot
         shoot = player.GetComponentInChildren<Shoot>();
 
-        isActiveShop = false;
+        IsActiveShop = false;
 
         //Определение, какое время включать для обратного отсчета
         CurrentLetfTime = DecideTimeRemain(GetIsActiveShop());
