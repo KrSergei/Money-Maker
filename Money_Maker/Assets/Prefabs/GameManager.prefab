@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7380985743794833993}
   - component: {fileID: 7380985743794833995}
+  - component: {fileID: 231971253}
+  - component: {fileID: 231971254}
+  - component: {fileID: 231971255}
   m_Layer: 2
   m_Name: GameManager
   m_TagString: GameManager
@@ -43,8 +46,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e7a466302b479408afbbb225f5cd77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCountAmmo: 40
+  maxCountAmmo: 80
   maxCountAmmoInMagazine: 20
   timeBetweenBuyAmmo: 20
   timeForBuyingAmmo: 5
   countBoughtAmmo: 10
+--- !u!114 &231971253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7380985743794833992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c7e9665ee80524fa59443defbe0757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 0}
+  pointForKilledEnemy: 0
+--- !u!114 &231971254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7380985743794833992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba369c7c87488274480d4be4a4a507e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObjectUIManager: {fileID: 0}
+  EnemySpotsSpawn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  typeEnemy:
+  - {fileID: 912699135264277877, guid: 98d76715f4a08f342bd7f26e52c64326, type: 3}
+  - {fileID: 912699135264277877, guid: 40fedbe2402387e458d910785e4606a0, type: 3}
+  - {fileID: 912699135264277877, guid: 5872e912ad55b954ca933c7f69a09f4f, type: 3}
+  countEnemy: 4
+  maxCountSpawnedEnemyInSpot: 2
+  timeBetweenWaves: 5
+  countEnemyWave: 3
+  currentWaves: 0
+  destroedEnemy: 0
+--- !u!114 &231971255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7380985743794833992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3705896ed23825a4a87bd30334ca875c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 0}
+  player: {fileID: 0}
+  periodBetweenBuying: 20
+  timeAccessToShop: 5
+  countBuyingAmmo: 10
+  pricePointForSellingAmmo: 5
+  isActiveShop: 0

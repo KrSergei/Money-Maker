@@ -17,24 +17,21 @@ public class ShopAmmo : MonoBehaviour
     private Shoot shoot;                    //компонет Shoot Player;
 
     public float CurrentLetfTime { get; set; }
-  
+    
+
     [SerializeField]
     private bool isActiveShop = false;
-    public bool IsActiveShop { get => isActiveShop; set => isActiveShop = value; }
+    public bool IsActiveShop { get => isActiveShop; set => isActiveShop = value; }  
 
-    public bool GetIsActiveShop()
-    {
-        return IsActiveShop;
-    }
-
-    public void SetIsActiveShop(bool value)
-    {
-        IsActiveShop = value;
-    }
+    private string addedAmmo = "ADDED AMMO"; //текст, выводимый на экран при покупке патровнов
+    private string notHavePoints = "DON'T ENOUGH POINTS"; //текст, выводимый на экран при отсутствии очков на покупке патронов
+    private string shopIsClose = "SHOP IS CLOSED!!"; //текст, выводимый на экран при попытке купить патроны, когда магазин закрыт
 
     private void Start()
     {
+        //Получение компонента CalculateValues
         calculateValue = GetComponent<CalculateValues>();
+        //Получение компонента UIPlaying
         uiPlaying = uiManager.GetComponentInChildren<UIPlaying>();
         //Получение компонента Shoot
         shoot = player.GetComponentInChildren<Shoot>();
@@ -42,8 +39,7 @@ public class ShopAmmo : MonoBehaviour
         IsActiveShop = false;
 
         //Определение, какое время включать для обратного отсчета
-        CurrentLetfTime = DecideTimeRemain(GetIsActiveShop());
-        Debug.Log(CurrentLetfTime);
+        CurrentLetfTime = DecideTimeRemain(IsActiveShop);
     }
     private void Update()
     {
@@ -52,12 +48,12 @@ public class ShopAmmo : MonoBehaviour
         //При достижении времени отсчета равное либо меньше 0, смена флага isActiveShop на противоположный и смена времени для обратного отсчета
         if (CurrentLetfTime <= 0)
         {
-            //Передача значения IsActiveShop в игровой интерфейс для показа статуса магазина
-            uiPlaying.SetTextForRemainingTime(GetIsActiveShop());
             //Смена флага для изменения статуса магазина(открыт/закрыт)
-            SetValueForShop(GetIsActiveShop());
+            SetValueForShop(IsActiveShop);
+            //Передача значения IsActiveShop в игровой интерфейс для показа статуса магазина
+            uiPlaying.SetTextForRemainingTime(IsActiveShop);
             //Определение нового времени для отсчета в зависимости от состояния флага isActiveShop
-            CurrentLetfTime = DecideTimeRemain(GetIsActiveShop());
+            CurrentLetfTime = DecideTimeRemain(IsActiveShop);
         }
     }
 
@@ -77,7 +73,7 @@ public class ShopAmmo : MonoBehaviour
     /// <param name="value">Значение флага</param>
     private void SetValueForShop(bool value)
     {
-        SetIsActiveShop(!value);
+        IsActiveShop = !value;
     }
 
     /// <summary>
@@ -85,20 +81,21 @@ public class ShopAmmo : MonoBehaviour
     /// </summary>
     public void TryBuyAmmo()
     {
-        Debug.Log("GetIsActiveShop - " + GetIsActiveShop());
-        //Проверка на открытие магазина и что
-        if (GetIsActiveShop())
+        //Проверка на открытие магазина, если закрыт - вывод сообщения о том, что магазин закрыт
+        if (IsActiveShop)
         {
             //Если количество очков >= pricePointForSellingAmmo, то покупка патронов, иначе вывод сообщения об недостаточности очков
             if(calculateValue.PointForKilledEnemy >= pricePointForSellingAmmo)
             {
+                //вычитание из общего количества очков цену за покупку боеприпасов
                 calculateValue.PointForKilledEnemy -= pricePointForSellingAmmo;
+                //добавление ук текущему количеству боеприпасов купленные патроны
                 shoot.CurrentCountAmmo += countBuyingAmmo;
-                Debug.Log("BOUTH AMMO");
+                //вывод сообщения на экран о покупке боеприпасов
+                uiManager.GetComponent<UIManager>().ShowAnnounceMenu(addedAmmo);
 
-            } else  Debug.Log("YOU ARE BAD SHOOTER!!! DON'T ENOUGH POINTS");
+            } else uiManager.GetComponent<UIManager>().ShowAnnounceMenu(notHavePoints); //Вывод сообщения о недостаточности очков для покупки патронов
 
-        } else  Debug.Log("SHOP IS CLOSLED!! CLOSED!! CLOSED!!");
-      
+        } else uiManager.GetComponent<UIManager>().ShowAnnounceMenu(shopIsClose); //Вывод сообщения о том, что магазин закрыт
     }
 }

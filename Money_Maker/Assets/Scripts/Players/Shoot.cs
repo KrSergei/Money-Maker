@@ -4,8 +4,11 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     public GameObject gameManager;      //Объект управления игрой
+    public GameObject UIManager;        //Объект управления меню
     public GameObject bullet;           //Объект пули
     public Transform  shootPos;         //Место появления пули
+
+
 
     public float delayTimeShooting;     //интервал между выстрелами
 
@@ -20,6 +23,10 @@ public class Shoot : MonoBehaviour
     private int currentCountAmmo;       //Запас патронов
     [SerializeField]
     private int currentAmmoInMagazine;  //Текущее количество патровов в магазине
+
+    private string messageReload = "RELOAD";                //Сообщение выводимое на экран при необходимости перезарядки
+    private string messageBuyAmmo = "NEED BUY THE AMMO!!!"; //Сообщение выводимое на экран при необходимости покупки боеприпасов
+
 
     public int CurrentCountAmmo { get => currentCountAmmo; set => currentCountAmmo = value; }
     public int CurrentAmmoInMagazine { get => currentAmmoInMagazine; set => currentAmmoInMagazine = value; }
@@ -56,14 +63,14 @@ public class Shoot : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("NEED RELOAD");
+                    //Вызвов метода для показа объявления об перезарядке с передачей текста сообщения
+                    UIManager.GetComponent<UIManager>().ShowAnnounceMenu(messageReload);
                 }
             }
 
             //Если нажата клавиша R и текущее количество патронов не равно максимальному количеству патронов в магазине, вызов метода перезарядки патронов
             if (Input.GetKeyDown(KeyCode.R) && CurrentAmmoInMagazine != ammoInMagazine)
             {
-                Debug.Log("RELOAD");
                 ReloadAmmo(CurrentAmmoInMagazine);
             }
 
@@ -123,7 +130,8 @@ public class Shoot : MonoBehaviour
         {
             //Установка текущего значения currentCountAmmo в 0
             CurrentCountAmmo = 0;
-            Debug.Log("NEED BUY THE AMMO!!!");
+            //Вызвов метода для показа объявления об необходимости покупки беоприпасов с передачей текста сообщения
+            UIManager.GetComponent<UIManager>().ShowAnnounceMenu(messageBuyAmmo);
         }
     }
 }

@@ -1,16 +1,27 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
-    public float speed;     //скорость игрока
-    public int health;
-    public Animator anim;   //компонент аниматор игрока
+    public GameObject gameObjectUIManager; //Объект gameManager
 
+    private UIManager uiManager;
+
+    public float speed;     //скорость игрока
+    public int health;      //количество жизней
+    public Animator anim;   //компонент аниматор игрока
     Rigidbody2D rb;         //Компонет rigidbody игрока
+
+    private string messageForLose = "YOU LOSE"; //текстовое сообщение для проигрыша
+
+
     public void Start()
     {
+        //Получение компонента Rigidbody2D
         rb = GetComponent<Rigidbody2D>();
+        //Получение компонента UIManager 
+        uiManager = gameObjectUIManager.GetComponent<UIManager>();
     }
 
     private void FixedUpdate()
@@ -52,12 +63,12 @@ public class PlayerControl : MonoBehaviour
         //Если есть столкновение с коллайдером "Enemy", то отнимается один пункт здоровья
         if (col.tag == "Enemy")
         {
-            Debug.Log("health - 1");
-            health -= 1;
+            health --;
             //вызов метода проверки оставшегося здоровья
             CheckCurrenthealth();
         }
     }
+
     /// <summary>
     /// Проверка оставшегося здоровья
     /// </summary>
@@ -66,8 +77,10 @@ public class PlayerControl : MonoBehaviour
         //Если здоровье меньше либо = 0, то вызов меню окончания игры
         if(health <= 0)
         {
-            //Destroy(gameObject);
-            Debug.Log("Game Over");
+            //Вызов метода для показа меню окончания игры с передачей ему сообщения о проигрыше
+            uiManager.ShowGameOverMenu(messageForLose);
+            //Установка скорости игры в 0
+            Time.timeScale = 0f;
         }
     }
 }
