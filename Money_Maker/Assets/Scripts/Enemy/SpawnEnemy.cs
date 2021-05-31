@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
+    public GameObject gameObjectUIManager;   //Объект gameManager
+
+    private UIManager uiManager;            //Компонент UIManager у объекта gameManager
 
     public List<Transform> EnemySpotsSpawn; //массив точек генерации объекта типа enemy
     public GameObject[] typeEnemy;          //массив типов enemy
-
     public int countEnemy;                  //Общее количество генерируемых объектов
     public int maxCountSpawnedEnemyInSpot;  //Максимальное количество генерируемых объектов на одной точке
     public float timeBetweenWaves;          //Время ожидания между китерацими генерации объектов
@@ -19,18 +21,22 @@ public class SpawnEnemy : MonoBehaviour
     [SerializeField]
     private int destroedEnemy;              //Количество уничтоженных врагов
 
+    private int indexSpotForBoss = 0,       //Индекс точки генерации босса из списа точек генерации
+                numberWaveMixedTypeEnemy = 1; //Показатель значения номера волны, для которой необходимо включить смешанную генерацию типа волны
+
+    [SerializeField]
+    private float ratioForMixedWave = 0.5f; //Коэффициент для выбора типа генерируемого объекта для волны со смешанной генерацией врагов
+
+    private string messageAfterLAstWave = "YOU WIN!!";  //Текстовое сообщение о прохождении всех волн
+
     private void Start()
     {
+        //Установка текущей волны в начале игра равной 0
         currentWaves = 0;
-    }
+        //Получение компонента UIManager 
+        uiManager = gameObjectUIManager.GetComponent<UIManager>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartSpawnEnemy();
-        }
+        StartSpawnEnemy();
     }
 
     public void StartSpawnEnemy()
@@ -39,15 +45,25 @@ public class SpawnEnemy : MonoBehaviour
         StartCoroutine(SpawnEnemyInSpot(currentWaves, countEnemy));
     }
 
+    /// <summary>
+    /// Генерация объектов в зависимости от номера текущей волны, количества врагов в волне и с указанной задержкой между волнам
+    /// Для первой волны, задерка равна 0
+    /// </summary>
+    /// <param name="currentWave">номер волны</param>
+    /// <param name="countEnemyForWalve">количество врагов в волне</param>
+    /// <param name="timeDelay">задержка между волнами</param>
+    /// <returns></returns>
     IEnumerator SpawnEnemyInSpot(int currentWave, int countEnemyForWalve, float timeDelay = 0f)
     {
         //Задержка перед запуском(при запуске первой волны, задержка равняется 0)
         //При перезапуске волны добавляется задерка при запуске волны
         yield return new WaitForSeconds(timeDelay);
-        //Определение рандомной точки генерации. 
-        //Вызов метода случайного определения точки генерации из списка возможных точек генерации
-        int spawnPos = RandomValue(EnemySpotsSpawn.Count);
-        //Количество сгенереированных врагов
+
+        //Определение типа волны, если последняя, то генерация босса в центре карты (точка генерации с индексом 0 из списка точек генерации), 
+        //иначе случайная генерация в различных точках
+        int spawnPos = (currentWave == typeEnemy.Length - 1) ? indexSpotForBoss : RandomValue(EnemySpotsSpawn.Count);
+
+        //Количество сгенерированных врагов
         int spawnedEnemy = 0;
         //Количеств оставшишся объектов генерации в волне
         int countEnemyForSpawn = countEnemyForWalve;
@@ -65,15 +81,36 @@ public class SpawnEnemy : MonoBehaviour
                 spawnedEnemy = 0;
             }
 
-            //Генерация объекта в точке из из списка возможных точек генерации
-            Instantiate(typeEnemy[currentWave], EnemySpotsSpawn[spawnPos].position, transform.rotation);
+            if (currentWave == numberWaveMixedTypeEnemy)
+            {
+                Debug.Log("Wave 2");
+                //Генерация случайного типа объекта в точке из из списка возможных точек генерации
+                Instantiate(typeEnemy[ChoiceSpawnTypeEnemy()], EnemySpotsSpawn[spawnPos].position, transform.rotation);
+            }
+            else
+            {
+                //Генерация объекта в точке из из списка возможных точек генерации
+                Instantiate(typeEnemy[currentWave], EnemySpotsSpawn[spawnPos].position, transform.rotation);
+            }
             //Декремент общего количества сгенерированных объектов 
             countEnemyForSpawn--;
             //Инкремент максимального количества сгенерированных объектов на одной точке
             spawnedEnemy++;
-            //Пауза перед генерацией объекта
+            //Пауза перед генерацией объекта 1 c
             yield return new WaitForSeconds(1f);
         }
+    }
+
+   /// <summary>
+   /// Метод случайного выбора индекса типа объекта из массива объектов
+   /// </summary>
+   /// <returns></returns>
+    private int ChoiceSpawnTypeEnemy()
+    {
+        if(Random.Range(0f, 1f) < ratioForMixedWave)
+          return 0; //возврат индекса 0 для массива типов врагов
+        else
+          return 1; //возврат индекса 1 для массива типов врагов
     }
 
     /// <summary>
@@ -88,7 +125,10 @@ public class SpawnEnemy : MonoBehaviour
         //Если текущая волна равна длине массива генерируемых объектов,
         //то установка количества генерируемых объектов равная 1 (генерация объект типа босс уровня)
         if (currentWaves == typeEnemy.Length - 1)
+        {
             countEnemy = 1;
+        }
+            
         //Старт корутины с передачей дополнительного параметра времени задержки перед стартом
         StartCoroutine(SpawnEnemyInSpot(currentWaves, countEnemy, timeBetweenWaves));
     }
@@ -116,11 +156,11 @@ public class SpawnEnemy : MonoBehaviour
     private int RandomValue(int value, bool changePos = false)
     {
         if (!changePos)
-            //Выбор точки генерации из всего списка
-            return Random.Range(Mathf.FloorToInt(0), Mathf.FloorToInt(value)); 
+            //Выбор точки генерации из всего списка и исключая точку с индексом 0 (точка генерации босса)
+            return Random.Range(Mathf.FloorToInt(1), Mathf.FloorToInt(value)); 
         else
-            //выбор точки генерации из списка без последней позиции
-            return Random.Range(Mathf.FloorToInt(0), Mathf.FloorToInt(value - 1));
+            //выбор точки генерации из списка без последней позиции и исключая точку с индексом 0 (точка генерации босса)
+            return Random.Range(Mathf.FloorToInt(1), Mathf.FloorToInt(value - 1));
     }
 
     /// <summary>
@@ -147,9 +187,20 @@ public class SpawnEnemy : MonoBehaviour
     {
         destroedEnemy++;
         //Проверка на запуск новой волны
+        //Если количество уничтоженных врагов больше либо равно количеству врагов в волне и
+        //номер текущей волны меньше, чем длина массива типов врагов - 1
         if(destroedEnemy >= countEnemy && currentWaves < typeEnemy.Length - 1)
         {
             RestarWave();
+        }
+        //Если количество уничтоженных врагов больше либо равно количеству врагов в волне и
+        //номер текущей волны равен длина массива типов врагов - 1, то выход в меню Game Over и вывод сообщения о победе
+        if (destroedEnemy >= countEnemy && currentWaves == typeEnemy.Length - 1)
+        {
+            //Вызов метода для показа меню окончания игры с передачей ему сообщения о прохождении игры
+            uiManager.ShowGameOverMenu(messageAfterLAstWave);
+            //Установка скорости игры в 0
+            Time.timeScale = 0f;
         }
     }
 }

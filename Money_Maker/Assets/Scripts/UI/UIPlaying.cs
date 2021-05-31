@@ -19,9 +19,9 @@ public class UIPlaying : MonoBehaviour
 
 
     //“екст во врем€ обрратного отсчета до окрыти€ магазина
-    private string textForRemaningTime = "TIME TO BUY AMMO - ";
+    private string textForRemaningTime = "TIME TO OPEN SHOP: ";
     //“екст во врем€ открыти€ магазина 
-    private string textForShopping = "SHOP!! SHOP!! SHOP!!";
+    private string textForShopping = "SHOP IS OPEN";
 
     private bool isActiveShop; //‘лаг, указывающий какое сообщение выводить в текст
 
@@ -35,11 +35,6 @@ public class UIPlaying : MonoBehaviour
         shoot = player.GetComponentInChildren<Shoot>();
         //—тартова€ установка строки дл€ объ€влени€
         announcementShop.text = textForRemaningTime;
-        //ѕоказ времени до открыти€/закрыти€ магазина
-        //—тартовое получение значений количество патровно в магазине и количества запасных патронов
-        ShowCurrentValueForText(currentAmmoInMagazine, shoot.CurrentAmmoInMagazine);
-        ShowCurrentValueForText(currentAmmo, shoot.CurrentCountAmmo);
-
     }
 
 
@@ -49,10 +44,10 @@ public class UIPlaying : MonoBehaviour
         ShowCurrentValueForText(remainigTimeToShopText, Mathf.Round(shopAmmo.CurrentLetfTime));
         //¬ызов метода показа текущего количество очков
         ShowCurrentValueForText(currentPoints, calculateValues.PointForKilledEnemy);
-        //ќбновление значений
+        //ќбновление значений количества патронов в магазине и количества запасных патронов
         ShowCurrentValueForText(currentAmmoInMagazine, shoot.CurrentAmmoInMagazine);
         ShowCurrentValueForText(currentAmmo, shoot.CurrentCountAmmo);
-        
+
     }
 
     /// <summary>

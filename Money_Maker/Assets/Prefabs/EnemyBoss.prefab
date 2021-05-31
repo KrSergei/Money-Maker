@@ -49,7 +49,7 @@ MonoBehaviour:
   gameManager: {fileID: 7380985743794833992, guid: fb4bb35563161834c8871dd3805c72cb, type: 3}
   offset: 90
   speed: 1
-  health: 50
+  health: 5
   minDistanceToTarget: 0
   speedAttack: 0.3
   timeRepeatAttack: 1

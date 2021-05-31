@@ -64,7 +64,7 @@ public class Shoot : MonoBehaviour
                 else
                 {
                     //Вызвов метода для показа объявления об перезарядке с передачей текста сообщения
-                    UIManager.GetComponent<UIManager>().ShowAnnounce(messageReload);
+                    UIManager.GetComponent<UIManager>().ShowAnnounceMenu(messageReload);
                 }
             }
 
@@ -131,7 +131,7 @@ public class Shoot : MonoBehaviour
             //Установка текущего значения currentCountAmmo в 0
             CurrentCountAmmo = 0;
             //Вызвов метода для показа объявления об необходимости покупки беоприпасов с передачей текста сообщения
-            UIManager.GetComponent<UIManager>().ShowAnnounce(messageBuyAmmo);
+            UIManager.GetComponent<UIManager>().ShowAnnounceMenu(messageBuyAmmo);
         }
     }
 }

@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIAnnounce : MonoBehaviour
 {
-    public Text announceText;       //Текс выводимого сообщения
+    public Text announceText;       //Текст выводимого сообщения
 
-    // Start is called before the first frame update
     void Start()
     {
         ShowingCurrentText();
     }
 
+    /// <summary>
+    /// Вывод сообщения на экран
+    /// </summary>
+    /// <param name="textAnnounce"></param>
     public void ShowingCurrentText(string textAnnounce = "")
     {
         announceText.text = textAnnounce;
