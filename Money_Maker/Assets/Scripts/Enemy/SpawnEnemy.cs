@@ -35,7 +35,7 @@ public class SpawnEnemy : MonoBehaviour
         currentWaves = 0;
         //Получение компонента UIManager 
         uiManager = gameObjectUIManager.GetComponent<UIManager>();
-
+        //Запуск генерации волн
         StartSpawnEnemy();
     }
 
