@@ -83,7 +83,6 @@ public class SpawnEnemy : MonoBehaviour
 
             if (currentWave == numberWaveMixedTypeEnemy)
             {
-                Debug.Log("Wave 2");
                 //Генерация случайного типа объекта в точке из из списка возможных точек генерации
                 Instantiate(typeEnemy[ChoiceSpawnTypeEnemy()], EnemySpotsSpawn[spawnPos].position, transform.rotation);
             }
