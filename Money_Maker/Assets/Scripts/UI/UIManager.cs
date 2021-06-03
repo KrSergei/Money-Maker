@@ -17,9 +17,17 @@ public class UIManager : MonoBehaviour
 
     public float timeShowingAnnounceMenu = 1f; //Время показа меню объявления
 
-    // Start is called before the first frame update
+    public AudioSource startMenuSounadTrack; //Фоновая дорожка для стартового меню
+
+    public GameObject player; //Компонент Player
+
+
     void Start()
     {
+        //Установка скорости игры равная 0
+        Time.timeScale = 0f;
+        //Отключение игрового компонента Shoot у игрока, для отключения эффектов стрельбы в главном меню.
+        player.gameObject.GetComponentInChildren<Shoot>().enabled = false;
         //Активация стртового меню 
         canvasMenu[0].gameObject.SetActive(true);
         //Деактивация игрового меню
@@ -28,8 +36,9 @@ public class UIManager : MonoBehaviour
         canvasMenu[2].gameObject.SetActive(false);
         //Деактивация меню объявления
         canvasMenu[3].gameObject.SetActive(false);
-        //Установка скорости игры равная 0
-        Time.timeScale = 0f;
+        //Включение стартовой музыки
+        startMenuSounadTrack.Play();
+
     }
 
     public void ShowAnnounceMenu(string messageAnnounce)
@@ -61,22 +70,36 @@ public class UIManager : MonoBehaviour
         
     }
 
+
+    /// <summary>
+    /// Обработка нажатия на кнопку старт
+    /// </summary>
     public void BAStartButton()
     {
+        //Отключение фоновой музыки в стартовом меню
+        startMenuSounadTrack.Stop();
         //Деактивация стртового меню 
         canvasMenu[0].gameObject.SetActive(false);
         //Активация игрового меню
         canvasMenu[1].gameObject.SetActive(true);
         //Установка скорости игры равная 0
         Time.timeScale = 1f;
+        //Включение игрового компонента для активации стрельбы
+        player.gameObject.GetComponentInChildren<Shoot>().enabled = true;
     }
 
+    /// <summary>
+    /// Обратотка нажатия на кнопку выход
+    /// </summary>
     public void BAExitButton()
     {
         Debug.Log("Exit");
         Application.Quit();
     }
 
+    /// <summary>
+    /// Обработка нажатия на кнопку рестарт
+    /// </summary>
     public void BARestart()
     {
         SceneManager.LoadScene(0);
