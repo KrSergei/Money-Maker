@@ -6279,11 +6279,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72df95d31e843c640b39bf313455db28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundOFFAfterEnded:
-  - {fileID: 2010192531}
-  - {fileID: 164375210}
-  - {fileID: 1979008930363405452, guid: 98d76715f4a08f342bd7f26e52c64326, type: 3}
-  amEnemy: {fileID: 24100000, guid: 88f9154ac5404444eb9e26cb0890d10c, type: 2}
 --- !u!1 &1288705561
 GameObject:
   m_ObjectHideFlags: 0
@@ -8317,6 +8312,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 912699135264277875, guid: 5872e912ad55b954ca933c7f69a09f4f, type: 3}
+      propertyPath: animationWalkSpeed
+      value: 0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 912699135264277876, guid: 5872e912ad55b954ca933c7f69a09f4f, type: 3}
       propertyPath: m_RootOrder
       value: 4

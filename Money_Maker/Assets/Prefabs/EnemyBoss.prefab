@@ -56,6 +56,7 @@ MonoBehaviour:
   speedAttack: 0.3
   timeRepeatAttack: 1
   pointPrice: 75
+  animationWalkSpeed: 0.25
   damageArea:
   - {fileID: 912699135454377130}
   - {fileID: 8853885066650253176}
