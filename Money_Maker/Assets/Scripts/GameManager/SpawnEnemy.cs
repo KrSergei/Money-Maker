@@ -15,6 +15,9 @@ public class SpawnEnemy : MonoBehaviour
     public float timeBetweenWaves;          //Время ожидания между китерацими генерации объектов
 
     [SerializeField]
+    private List<GameObject> createdEnemy;  //Список созданных объектов Enemy
+
+    [SerializeField]
     private int countEnemyWave;             //Количество волн врагов 
     [SerializeField]
     private int currentWaves;               //Номер текущей итерации генерации объектов
@@ -35,14 +38,15 @@ public class SpawnEnemy : MonoBehaviour
         currentWaves = 0;
         //Получение компонента UIManager 
         uiManager = gameObjectUIManager.GetComponent<UIManager>();
-        //Запуск генерации волн
-        StartSpawnEnemy();
     }
 
+    /// <summary>
+    /// Метод запуска генерации волн
+    /// </summary>
     public void StartSpawnEnemy()
     {
         //Запуск корутины по генерации врагов с передачей в нее типа индекса имассива типа генерируемых врагов
-        StartCoroutine(SpawnEnemyInSpot(currentWaves, countEnemy));
+        //StartCoroutine(SpawnEnemyInSpot(currentWaves, countEnemy));
     }
 
     /// <summary>
@@ -55,8 +59,7 @@ public class SpawnEnemy : MonoBehaviour
     /// <returns></returns>
     IEnumerator SpawnEnemyInSpot(int currentWave, int countEnemyForWalve, float timeDelay = 0f)
     {
-        //Задержка перед запуском(при запуске первой волны, задержка равняется 0)
-        //При перезапуске волны добавляется задерка при запуске волны
+        //Задержка перед запуском(при запуске первой волны, задержка равняется 0). При перезапуске волны добавляется задержка
         yield return new WaitForSeconds(timeDelay);
 
         //Определение типа волны, если последняя, то генерация босса в центре карты (точка генерации с индексом 0 из списка точек генерации), 
@@ -81,16 +84,22 @@ public class SpawnEnemy : MonoBehaviour
                 spawnedEnemy = 0;
             }
 
+            //Если номер текущей волны равен номеру волны со смешанным типом объекта Enemy, то генерация волны из двух типов объектов Enemy
             if (currentWave == numberWaveMixedTypeEnemy)
             {
                 //Генерация случайного типа объекта в точке из из списка возможных точек генерации
-                Instantiate(typeEnemy[ChoiceSpawnTypeEnemy()], EnemySpotsSpawn[spawnPos].position, transform.rotation);
+                GameObject createdEnemy = Instantiate(typeEnemy[ChoiceSpawnTypeEnemy()], EnemySpotsSpawn[spawnPos].position, transform.rotation);
+                //Добавление объекта в список созданных объектов
+                AddCreatedObjectToList(createdEnemy);
             }
             else
             {
                 //Генерация объекта в точке из из списка возможных точек генерации
-                Instantiate(typeEnemy[currentWave], EnemySpotsSpawn[spawnPos].position, transform.rotation);
+                GameObject createdEnemy = Instantiate(typeEnemy[currentWave], EnemySpotsSpawn[spawnPos].position, transform.rotation);
+                //Добавление объекта в список созданных объектов
+                AddCreatedObjectToList(createdEnemy);
             }
+
             //Декремент общего количества сгенерированных объектов 
             countEnemyForSpawn--;
             //Инкремент максимального количества сгенерированных объектов на одной точке
@@ -127,7 +136,10 @@ public class SpawnEnemy : MonoBehaviour
         {
             countEnemy = 1;
         }
-            
+
+        //Очистка списка созданных объектов
+        ClearListCreatedEnemy();
+
         //Старт корутины с передачей дополнительного параметра времени задержки перед стартом
         StartCoroutine(SpawnEnemyInSpot(currentWaves, countEnemy, timeBetweenWaves));
     }
@@ -201,5 +213,40 @@ public class SpawnEnemy : MonoBehaviour
             //Установка скорости игры в 0
             Time.timeScale = 0f;
         }
+    }
+
+    /// <summary>
+    /// Заполнение списка созданных объектов 
+    /// </summary>
+    /// <param name="createdObjectEnemy"></param>
+    private void AddCreatedObjectToList(GameObject createdObjectEnemy)
+    {
+        //Добавление в список созданного объекта Enemy
+        createdEnemy.Add(createdObjectEnemy);
+    } 
+
+    /// <summary>
+    /// Метод унитожения объектов после проигрыша
+    /// </summary>
+    public void DestoyAllEnemyAfterEnded()
+    {
+        //Прохождение по списку созданных объектов Enemy
+        for (int i = 0; i < createdEnemy.Count; i++)
+        {
+            //Если ссылка на объект не пустая, то удаление объекта
+            if (createdEnemy[i] != null)
+                Destroy(createdEnemy[i]);
+        }
+        //Очистка списка созданных объектов
+        ClearListCreatedEnemy();
+    }
+    
+    /// <summary>
+    /// Очистка списка созданных объектов типа Enemy
+    /// </summary>
+    private void ClearListCreatedEnemy()
+    {
+        //Очистка списка созданных объектов
+        createdEnemy.Clear();
     }
 }
