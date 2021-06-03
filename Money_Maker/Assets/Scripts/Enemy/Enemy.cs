@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public float speedAttack;       //Скорость атаки
     public float timeRepeatAttack;  //Время, через которое повторяется атака
     public int pointPrice;          //Стоимость за учничтожение объекта
-
+    public float animationWalkSpeed; //Скорость воспроизведения анимации ходьбы
 
     public Transform[] damageArea;  //Массив позиций точек атаки
     public Animator anim;           //Аниматор
@@ -57,6 +57,7 @@ public class Enemy : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             //Включение анимации передвижения
             anim.SetBool("Walk", true);
+            anim.speed = animationWalkSpeed;
 
         } else anim.SetBool("Walk", false);
         yield return null;
