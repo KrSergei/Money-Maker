@@ -879,7 +879,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7525217071649228823, guid: 218ef60396cc8134581708db39e40cf1, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 0efaf8c42603ef142854689ff5145303, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -965,6 +965,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &164375211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164375208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f79c01012180dc4bbe81ca4e7599beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundsGun:
+  - {fileID: 8300000, guid: 0efaf8c42603ef142854689ff5145303, type: 3}
+  - {fileID: 8300000, guid: 3f26659e003f00643b46b3f4fe5b2aa8, type: 3}
 --- !u!1001 &171585385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5396,9 +5411,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1345999269}
     - target: {fileID: 538707089, guid: 8526b8b2665400f45a73eef502c8a27f, type: 3}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 164375208}
+    - target: {fileID: 538707089, guid: 8526b8b2665400f45a73eef502c8a27f, type: 3}
       propertyPath: shoot
       value: 
       objectReference: {fileID: 164375210}
+    - target: {fileID: 538707089, guid: 8526b8b2665400f45a73eef502c8a27f, type: 3}
+      propertyPath: gunSound
+      value: 
+      objectReference: {fileID: 164375208}
     - target: {fileID: 538707089, guid: 8526b8b2665400f45a73eef502c8a27f, type: 3}
       propertyPath: UIManager
       value: 
@@ -5412,12 +5435,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 231971252}
     - target: {fileID: 538707089, guid: 8526b8b2665400f45a73eef502c8a27f, type: 3}
+      propertyPath: reloadSound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 538707089, guid: 8526b8b2665400f45a73eef502c8a27f, type: 3}
       propertyPath: delayTimeShooting
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7262782402342407234, guid: 8526b8b2665400f45a73eef502c8a27f, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763783732139860161, guid: 8526b8b2665400f45a73eef502c8a27f, type: 3}
+      propertyPath: m_Name
+      value: Gun
       objectReference: {fileID: 0}
     - target: {fileID: 7763783734082410632, guid: 8526b8b2665400f45a73eef502c8a27f, type: 3}
       propertyPath: m_RootOrder
@@ -8314,7 +8345,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 912699135264277875, guid: 5872e912ad55b954ca933c7f69a09f4f, type: 3}
       propertyPath: animationWalkSpeed
-      value: 0.12
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 912699135264277876, guid: 5872e912ad55b954ca933c7f69a09f4f, type: 3}
       propertyPath: m_RootOrder
@@ -10474,6 +10505,10 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 1345999269}
+    - target: {fileID: 231971254, guid: fb4bb35563161834c8871dd3805c72cb, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1810269600}
     - target: {fileID: 231971254, guid: fb4bb35563161834c8871dd3805c72cb, type: 3}
       propertyPath: countEnemy
       value: 20

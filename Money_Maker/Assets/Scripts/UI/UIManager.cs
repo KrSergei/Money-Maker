@@ -93,7 +93,6 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void BAExitButton()
     {
-        Debug.Log("Exit");
         Application.Quit();
     }
 

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SpawnEnemy : MonoBehaviour
 {
-    public GameObject gameObjectUIManager;   //Объект gameManager
+    public GameObject gameObjectUIManager;  //Объект gameManager
+
+    public GameObject player;               //Объект Player
 
     private UIManager uiManager;            //Компонент UIManager у объекта gameManager
 
@@ -46,7 +48,7 @@ public class SpawnEnemy : MonoBehaviour
     public void StartSpawnEnemy()
     {
         //Запуск корутины по генерации врагов с передачей в нее типа индекса имассива типа генерируемых врагов
-        StartCoroutine(SpawnEnemyInSpot(currentWaves, countEnemy));
+        //StartCoroutine(SpawnEnemyInSpot(currentWaves, countEnemy));
     }
 
     /// <summary>
@@ -210,6 +212,8 @@ public class SpawnEnemy : MonoBehaviour
         {
             //Вызов метода для показа меню окончания игры с передачей ему сообщения о прохождении игры
             uiManager.ShowGameOverMenu(messageAfterLAstWave);
+            //Деактивация объекта Player
+            player.gameObject.SetActive(false);
             //Установка скорости игры в 0
             Time.timeScale = 0f;
         }

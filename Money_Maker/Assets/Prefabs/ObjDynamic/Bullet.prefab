@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  lifeTime: 5
+  lifeTime: 2
   distance: 0
   damage: 1
   whatIsSolid:

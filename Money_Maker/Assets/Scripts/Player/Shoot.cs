@@ -6,9 +6,7 @@ public class Shoot : MonoBehaviour
     public GameObject gameManager;      //Объект управления игрой
     public GameObject UIManager;        //Объект управления меню
     public GameObject bullet;           //Объект пули
-    public Transform  shootPos;         //Место появления пули
-
-    public AudioSource shootSound;      //Аудио ресурс для проигрывания звука выстрела
+    public GameObject gun;              //Объект оружие
 
     public float delayTimeShooting;     //интервал между выстрелами
 
@@ -23,6 +21,7 @@ public class Shoot : MonoBehaviour
     private int currentCountAmmo;       //Запас патронов
     [SerializeField]
     private int currentAmmoInMagazine;  //Текущее количество патровов в магазине
+    private bool isReloading = false;   //Флаг нахождения в процессе перезарядки
 
     private string messageReload = "RELOAD";                //Сообщение выводимое на экран при необходимости перезарядки
     private string messageBuyAmmo = "NEED BUY THE AMMO!!!"; //Сообщение выводимое на экран при необходимости покупки боеприпасов
@@ -33,7 +32,6 @@ public class Shoot : MonoBehaviour
 
     private void Start()
     {
-        shootSound.GetComponentInChildren<AudioSource>();
         //Максимальный запас патронов
         countAmmo = gameManager.GetComponent<ShootControl>().MaxCountAmmo;
         //Установка количество патронов в магазине из настроек
@@ -72,7 +70,8 @@ public class Shoot : MonoBehaviour
             //Если нажата клавиша R и текущее количество патронов не равно максимальному количеству патронов в магазине, вызов метода перезарядки патронов
             if (Input.GetKeyDown(KeyCode.R) && CurrentAmmoInMagazine != ammoInMagazine)
             {
-                ReloadAmmo(CurrentAmmoInMagazine);
+                //Старт корутины перезарядки
+                StartCoroutine(ReloadAmmo(CurrentAmmoInMagazine));
             }
 
         }  else startTimeShooting -= Time.deltaTime;  //Интервал между выстрелами
@@ -89,23 +88,27 @@ public class Shoot : MonoBehaviour
     public IEnumerator DoShoot()
     {
         //создание объекта пули в точке появления пули и указание ей направления движения
-        Instantiate(bullet, shootPos.position, transform.rotation).GetComponent<Bullet>();
+        Instantiate(bullet, gun.transform.position, transform.rotation).GetComponent<Bullet>();
         //Проигрывание звука выстрела
-        shootSound.Play();
+        //shootSound.Play();
+        gun.GetComponent<GunSound>().PlaySoundClip(0);
         yield return null;
     }
+
 
     /// <summary>
     /// Перезарядка
     /// </summary>
     /// <param name="valueAmmoInMagazine">Оставшееся количество патронов в магазине</param>
-    private void ReloadAmmo(int valueAmmoInMagazine)
+    private IEnumerator ReloadAmmo(int valueAmmoInMagazine)
     {
         //Проверка на наличие патронов, если больше 0, то перезарядка магазина
         if (CurrentCountAmmo > 0)
         {
             if (CurrentCountAmmo >= ammoInMagazine)
             {
+                //Проигрывание звука перезарядки, вызов метода PlaySoundClip у объекта gun с передачей индекса проигрываемого клипа 1.
+                gun.GetComponent<GunSound>().PlaySoundClip(1);
                 //установка текущего значения патронов в магазине равное количеству патронов, которое должно быть в в магазине
                 CurrentAmmoInMagazine = ammoInMagazine;
                 //вычитание из общего количества патронов количества, которое должно быть в в магазине
@@ -136,5 +139,6 @@ public class Shoot : MonoBehaviour
             //Вызвов метода для показа объявления об необходимости покупки беоприпасов с передачей текста сообщения
             UIManager.GetComponent<UIManager>().ShowAnnounceMenu(messageBuyAmmo);
         }
+        yield return null;
     }
 }
