@@ -48,7 +48,7 @@ public class SpawnEnemy : MonoBehaviour
     public void StartSpawnEnemy()
     {
         //Запуск корутины по генерации врагов с передачей в нее типа индекса имассива типа генерируемых врагов
-        //StartCoroutine(SpawnEnemyInSpot(currentWaves, countEnemy));
+        StartCoroutine(SpawnEnemyInSpot(currentWaves, countEnemy));
     }
 
     /// <summary>
