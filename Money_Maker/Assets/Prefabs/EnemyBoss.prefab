@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 7380985743794833992, guid: fb4bb35563161834c8871dd3805c72cb, type: 3}
   offset: 90
-  speed: 1
+  speed: 1.5
   health: 25
   minDistanceToTarget: 0
   speedAttack: 0.3

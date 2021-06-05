@@ -17,7 +17,9 @@ public class UIManager : MonoBehaviour
 
     public float timeShowingAnnounceMenu = 1f; //Время показа меню объявления
 
-    public AudioSource startMenuSounadTrack; //Фоновая дорожка для стартового меню
+    public AudioSource startMenuFonSound; //AudioResource для стартового меню
+
+    public AudioSource gameOverFonSound; //AudioResource для меню окончания игры
 
     public GameObject player; //Компонент Player
 
@@ -37,7 +39,7 @@ public class UIManager : MonoBehaviour
         //Деактивация меню объявления
         canvasMenu[3].gameObject.SetActive(false);
         //Включение стартовой музыки
-        startMenuSounadTrack.Play();
+        startMenuFonSound.Play();
 
     }
 
@@ -77,7 +79,7 @@ public class UIManager : MonoBehaviour
     public void BAStartButton()
     {
         //Отключение фоновой музыки в стартовом меню
-        startMenuSounadTrack.Stop();
+        startMenuFonSound.Stop();
         //Деактивация стртового меню 
         canvasMenu[0].gameObject.SetActive(false);
         //Активация игрового меню
@@ -93,7 +95,6 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void BAExitButton()
     {
-        Debug.Log("Exit");
         Application.Quit();
     }
 
